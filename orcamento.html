@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaque&Arte - Orçamento</title>
+    <link rel="stylesheet" href="src/CSS/styles.css">
+</head>
+<body>
+    <!-- Menu Lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="index.html">
+                <img id="logo" src="src/imagens/logo.png" alt="Logo Destaque&Arte">
+            </a>
+        </div>
+        <ul>
+            <li><a href="quem-somos.html">Quem Somos</a></li>
+            <li><a href="premios.html">Prêmios</a></li> <!-- Novo Item -->
+            <li><a href="nossos-servicos.html">Nossos Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="orcamento.html">Orçamento</a></li>
+        </ul>
+        <!-- Botão de Alternância de Tema -->
+        <div class="theme-toggle">
+            <button id="themeButton">🌙 Modo Escuro</button>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <section>
+            <h2>Solicite um Orçamento</h2>
+            <form id="orcamentoForm">
+                <label for="produtoServico">Produto ou Serviço:</label>
+                <input type="text" id="produtoServico" name="produtoServico" required>
+
+                <label for="detalhes">Detalhes:</label>
+                <textarea id="detalhes" name="detalhes" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="social-media">
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">LinkedIn</a>
+            <!-- Adicione mais redes sociais conforme necessário -->
+        </div>
+        <p>&copy; 2024 Destaque&Arte. Todos os direitos reservados.</p>
+        <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+    </footer>
+
+    <script src="src/JS/scripts.js"></script>
+</body>
+</html>
