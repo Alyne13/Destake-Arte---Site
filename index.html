@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destaque&Arte - Home</title>
+    <title>Destaque&Arte - Página Inicial</title>
     <link rel="stylesheet" href="src/CSS/styles.css">
 </head>
 <body>
@@ -15,45 +15,27 @@
             </a>
         </div>
         <ul>
+            <li><a href="index.html">Página Inicial</a></li>
             <li><a href="quem-somos.html">Quem Somos</a></li>
-            <li><a href="premios.html">Prêmios</a></li> <!-- Novo Item -->
+            <li><a href="premios.html">Prêmios</a></li>
             <li><a href="nossos-servicos.html">Nossos Serviços</a></li>
+            <li><a href="cátalogo.html">Cátalogo</a></li>
             <li><a href="contato.html">Contato</a></li>
             <li><a href="orcamento.html">Orçamento</a></li>
         </ul>
-        <!-- Botão de Alternância de Tema -->
         <div class="theme-toggle">
-            <button id="themeButton">🌙 Modo Escuro</button>
+            <button id="theme-toggle">Mudar Tema</button>
         </div>
     </nav>
 
-    <!-- Slideshow -->
-    <div class="slideshow-container">
-        <div class="slides fade">
-            <img src="src/imagens/produto1.jpg" alt="Produto 1">
-        </div>
-        <div class="slides fade">
-            <img src="src/imagens/produto2.jpg" alt="Produto 2">
-        </div>
-        <div class="slides fade">
-            <img src="src/imagens/produto3.jpg" alt="Produto 3">
-        </div>
-        <div class="slides fade">
-            <img src="src/imagens/produto4.jpg" alt="Produto 4">
-        </div>
-        <div class="slides fade">
-            <img src="src/imagens/produto5.jpg" alt="Produto 5">
-        </div>
-
-        <!-- Indicadores -->
-        <div class="dots-container">
-            <span class="dot" data-slide="1"></span> 
-            <span class="dot" data-slide="2"></span> 
-            <span class="dot" data-slide="3"></span>
-            <span class="dot" data-slide="4"></span>
-            <span class="dot" data-slide="5"></span>
-        </div>
-    </div>
+    <!-- Conteúdo Principal -->
+    <main>
+        <section>
+            <h2>Bem-vindo à Destaque&Arte</h2>
+            <p>Aqui você encontra os melhores produtos e serviços criativos para sua empresa ou evento.</p>
+            <!-- Adicionar mais conteúdo aqui -->
+        </section>
+    </main>
 
     <!-- Rodapé -->
     <footer>
@@ -61,64 +43,11 @@
             <a href="#" target="_blank">Facebook</a>
             <a href="#" target="_blank">Instagram</a>
             <a href="#" target="_blank">LinkedIn</a>
-            <!-- Adicione mais redes sociais conforme necessário -->
         </div>
         <p>&copy; 2024 Destaque&Arte. Todos os direitos reservados.</p>
         <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
     </footer>
 
     <script src="src/JS/scripts.js"></script>
-    <script>
-        // Mudar o tema
-        const themeButton = document.getElementById("themeButton");
-        themeButton.addEventListener("click", function() {
-            document.body.classList.toggle("dark");
-            if (document.body.classList.contains("dark")) {
-                themeButton.textContent = "☀️ Modo Claro";
-                localStorage.setItem("theme", "dark");
-            } else {
-                themeButton.textContent = "🌙 Modo Escuro";
-                localStorage.setItem("theme", "light");
-            }
-        });
-
-        // Verificar tema ao carregar a página
-        window.onload = function() {
-            const theme = localStorage.getItem("theme");
-            if (theme === "dark") {
-                document.body.classList.add("dark");
-                themeButton.textContent = "☀️ Modo Claro";
-            } else {
-                themeButton.textContent = "🌙 Modo Escuro";
-            }
-        };
-
-        // Slideshow automático
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slides');
-        const totalSlides = slides.length;
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.style.display = (i === index) ? 'block' : 'none';
-            });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        // Exibir o primeiro slide
-        showSlide(currentSlide);
-
-        // Configurar intervalo do slideshow
-        setInterval(nextSlide, 5000);
-    </script>
 </body>
 </html>

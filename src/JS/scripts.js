@@ -6,21 +6,17 @@ function showSlides(n) {
     const slides = document.getElementsByClassName("slides");
     const dots = document.getElementsByClassName("dot");
 
-    // Ajusta o índice do slide
     if (n > slides.length) slideIndex = 1;
     if (n < 1) slideIndex = slides.length;
 
-    // Esconde todos os slides
     Array.from(slides).forEach(slide => {
         slide.style.display = "none";
     });
 
-    // Remove a classe "active" de todos os pontos
     Array.from(dots).forEach(dot => {
         dot.className = dot.className.replace(" active", "");
     });
 
-    // Exibe o slide atual e marca o ponto correspondente
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
 }
@@ -32,7 +28,7 @@ function nextSlide() {
 
 // Inicia o slideshow automático
 function startSlideshow() {
-    slideshowInterval = setInterval(nextSlide, 5000); // 5 segundos
+    slideshowInterval = setInterval(nextSlide, 5000);
 }
 
 // Reseta o slideshow quando o usuário interage
@@ -50,24 +46,25 @@ function currentSlide(n) {
 // Função para alternar o tema
 function toggleTheme() {
     const body = document.body;
-    const themeButton = document.getElementById('themeButton');
     const logo = document.getElementById('logo');
+    const themeButton = document.getElementById('themeButton');
 
-    // Alterna entre os modos claro e escuro
-    if (body.classList.toggle('dark-mode')) {
-        body.classList.remove('light-mode');
-        themeButton.textContent = '☀️ Modo Claro';
-        logo.src = 'src/imagens/logo-dark.png';
-        localStorage.setItem('theme', 'dark');
-    } else {
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
         body.classList.add('light-mode');
-        themeButton.textContent = '🌙 Modo Escuro';
         logo.src = 'src/imagens/logo-light.png';
+        themeButton.textContent = '🌙 Modo Escuro';
         localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        logo.src = 'src/imagens/logo-dark.png';
+        themeButton.textContent = '☀️ Modo Claro';
+        localStorage.setItem('theme', 'dark');
     }
 }
 
-// Função para carregar o tema salvo
+// Função para carregar o tema salvo no localStorage
 function loadTheme() {
     const body = document.body;
     const themeButton = document.getElementById('themeButton');
@@ -76,12 +73,12 @@ function loadTheme() {
 
     if (savedTheme === 'dark') {
         body.classList.add('dark-mode');
-        themeButton.textContent = '☀️ Modo Claro';
         logo.src = 'src/imagens/logo-dark.png';
+        themeButton.textContent = '☀️ Modo Claro';
     } else {
         body.classList.add('light-mode');
-        themeButton.textContent = '🌙 Modo Escuro';
         logo.src = 'src/imagens/logo-light.png';
+        themeButton.textContent = '🌙 Modo Escuro';
     }
 }
 
@@ -95,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dots = document.getElementsByClassName("dot");
     Array.from(dots).forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            currentSlide(index + 1); // Slide index começa em 1
+            currentSlide(index + 1);
         });
     });
 
@@ -124,4 +121,27 @@ document.addEventListener('DOMContentLoaded', function () {
     if (themeButton) {
         themeButton.addEventListener('click', toggleTheme);
     }
+
+    // Função para carregar as imagens automaticamente
+    function loadImages() {
+        const images = [
+            "Produto1.jpg",
+            "Produto2.jpg",
+            "Produto3.jpg",
+            "Produto4.jpg",
+            "Produto5.jpg"
+        ];
+
+        const gallery = document.getElementById('image-gallery');
+        images.forEach(image => {
+            const imgElement = document.createElement('img');
+            imgElement.src = `src/imagens/${image}`;
+            imgElement.alt = image;
+            imgElement.classList.add('gallery-image');
+            gallery.appendChild(imgElement);
+        });
+    }
+
+    // Carrega as imagens
+    loadImages();
 });
