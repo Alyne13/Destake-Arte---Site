@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Produtos</title>
+    <link rel="stylesheet" href="src/CSS/styles.css">
+    <script src="src/JS/script.js" defer></script>
+    <style>
+        /* Estilos básicos para o catálogo */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Tema Claro */
+        body.light {
+            background-color: white; /* Fundo branco no modo claro */
+            color: #333;
+        }
+
+        /* Tema Escuro */
+        body.dark {
+            background-color: #121212; /* Fundo preto no modo escuro */
+            color: white;
+        }
+
+        /* Estilo para o Menu Lateral */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh; /* Altura total da tela */
+            background-color: #333;
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Adiciona barra de rolagem quando o conteúdo excede a altura */
+        }
+
+        .sidebar .logo img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #555;
+        }
+
+        .sidebar .theme-toggle button {
+            margin-top: auto;
+            padding: 10px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .sidebar .theme-toggle button:hover {
+            background-color: #666;
+        }
+
+        /* Estilo para o Conteúdo Principal */
+        .main-content {
+            margin-left: 250px; /* Deixa espaço para o menu lateral */
+            padding: 20px;
+            height: 100vh;
+            overflow-y: auto; /* Permite rolagem no conteúdo */
+        }
+
+        /* Container do Catálogo */
+        .catalogo-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            padding: 20px;
+            margin-top: 40px; /* Espaço para o título do catálogo */
+        }
+
+        /* Estilo para os Produtos */
+        .produto {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .produto img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .produto h3 {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .produto p {
+            font-size: 1em;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .produto .preco {
+            font-size: 1.3em;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .produto .descricao {
+            font-size: 0.9em;
+            color: #444;
+        }
+
+        .produto .preco, .produto .descricao {
+            margin-top: 10px;
+        }
+
+        /* Botão de Download */
+        .download-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .download-container button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .download-container button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 200px; /* Menor largura para telas pequenas */
+            }
+
+            .main-content {
+                margin-left: 200px; /* Ajuste para o menu menor */
+            }
+
+            .catalogo-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .produto {
+                width: 80%;
+                max-width: 350px;
+            }
+        }
+
+        /* Adicionando rolagem global */
+        .main-content {
+            overflow-y: auto; /* Permite a rolagem para todos os módulos */
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu Lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="index.html">
+                <img id="logo" src="src/imagens/logo-light.png" alt="Logo Destaque&Arte">
+            </a>
+        </div>
+        <ul>
+            <li><a href="index.html">Página Inicial</a></li>
+            <li><a href="quem-somos.html">Quem Somos</a></li>
+            <li><a href="premios.html">Prêmios</a></li> 
+            <li><a href="nossos-servicos.html">Nossos Serviços</a></li>
+            <li><a href="cátalogo.html">Catálogo</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="orcamento.html">Orçamento</a></li>
+        </ul>
+        <!-- Botão de Alternância de Tema -->
+        <div class="theme-toggle">
+            <button id="themeButton">🌙 Modo Escuro</button>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+        <header>
+            <h1>Catálogo de Produtos</h1>
+        </header>
+
+        <!-- Container do catálogo com barra de rolagem -->
+        <div class="catalogo-container">
+            <!-- Produto 1 -->
+            <div class="produto">
+                <img src="src/imagens/Produto1.jpg" alt="Produto 1">
+                <h3>Produto 1</h3>
+                <p class="descricao">Descrição do Produto 1. Qualidade superior.</p>
+                <p class="preco">R$ 50,00/m²</p>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="produto">
+                <img src="src/imagens/Produto2.jpg" alt="Produto 2">
+                <h3>Produto 2</h3>
+                <p class="descricao">Descrição do Produto 2. Ideal para ambientes externos.</p>
+                <p class="preco">R$ 60,00/m²</p>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="produto">
+                <img src="src/imagens/Produto3.jpg" alt="Produto 3">
+                <h3>Produto 3</h3>
+                <p class="descricao">Descrição do Produto 3. Resistência e durabilidade.</p>
+                <p class="preco">R$ 45,00/m²</p>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="produto">
+                <img src="src/imagens/Produto4.jpg" alt="Produto 4">
+                <h3>Produto 4</h3>
+                <p class="descricao">Descrição do Produto 4. Design moderno e elegante.</p>
+                <p class="preco">R$ 70,00/m²</p>
+            </div>
+
+            <!-- Produto 5 -->
+            <div class="produto">
+                <img src="src/imagens/Produto5.jpg" alt="Produto 5">
+                <h3>Produto 5</h3>
+                <p class="descricao">Descrição do Produto 5. Acabamento impecável.</p>
+                <p class="preco">R$ 55,00/m²</p>
+            </div>
+        </div>
+
+        <!-- Botão para Download do Catálogo -->
+        <div class="download-container">
+            <button id="downloadCatalogo" onclick="downloadCatalogo()">Baixar Catálogo</button>
+        </div>
+
+        <!-- Rodapé -->
+        <footer>
+            <div class="social-media">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Instagram</a>
+                <a href="#" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2024 Destaque&Arte. Todos os direitos reservados.</p>
+            <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+        </footer>
+    </div>
+
+    <script src="src/JS/scripts.js"></script>
+    <script>
+        // Mudar o tema
+        const themeButton = document.getElementById("themeButton");
+        themeButton.addEventListener("click", function() {
+            document.body.classList.toggle("dark");
+            document.body.classList.toggle("light");
+            if (document.body.classList.contains("dark")) {
+                themeButton.textContent = "☀️ Modo Claro";
+                localStorage.setItem("theme", "dark");
+            } else {
+                themeButton.textContent = "🌙 Modo Escuro";
+                localStorage.setItem("theme", "light");
+            }
+        });
+
+        // Verificar tema ao carregar a página
+        window.onload = function() {
+            const theme = localStorage.getItem("theme");
+            if (theme === "dark") {
+                document.body.classList.add("dark");
+                themeButton.textContent = "☀️ Modo Claro";
+            } else {
+                document.body.classList.add("light");
+                themeButton.textContent = "🌙 Modo Escuro";
+            }
+        };
+
+        // Função para download do catálogo
+        function downloadCatalogo() {
+            const link = document.createElement('a');
+            link.href = 'src/imagens/catalogo.pdf';  // Caminho para o arquivo PDF
+            link.download = 'Catálogo Destaque&Arte.pdf';  // Nome do arquivo
+            link.click();
+        }
+    </script>
+</body>
+</html>
